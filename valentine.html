@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💛</title>
+
+<style>
+body {
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+}
+
+img {
+  width: 280px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 26px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ffd500;
+  color: black;
+}
+
+#no {
+  background: #555;
+  color: white;
+  position: absolute;
+}
+
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <img src="minion.png" alt="Be my valentine">
+  <br>
+  <button id="yes" onclick="yes()">Yes 💛</button>
+  <button id="no">No ❌</button>
+</div>
+
+<script>
+const no = document.getElementById("no");
+
+no.addEventListener("mouseover", () => {
+  no.style.left = Math.random() * (window.innerWidth - 120) + "px";
+  no.style.top = Math.random() * (window.innerHeight - 60) + "px";
+});
+
+function yes() {
+  document.body.innerHTML = `
+    <h1 style="color:#ffd500; text-align:center;">
+      YAY 💛<br>
+      I knew you’d say yes 😌
+    </h1>
+  `;
+
+  setInterval(createHeart, 300);
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 4000);
+}
+</script>
+
+</body>
+</html>
